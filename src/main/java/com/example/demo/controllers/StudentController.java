@@ -1,8 +1,10 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.entities.StudentEntity;
+import com.example.demo.models.in.StudentCreate;
 import com.example.demo.services.StudentService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,19 +21,24 @@ public class StudentController {
         return iStudentService.getStudents();
     }
 
-    @PostMapping(value = "/students")
-    public StudentEntity postClass(@RequestBody StudentEntity studentEntity) {
-        return iStudentService.createStudent(studentEntity);
-    }
-
     @GetMapping(value = "/students/{id}")
     public Optional<StudentEntity> getStudentsById(@PathVariable("id") int id) {
         return iStudentService.getStudentsById(id);
     }
 
+    @GetMapping(value = "classes/{name}/students")
+    public List<StudentEntity> getStudentsByNameClass(@PathVariable("name") String nameClass) {
+        return iStudentService.getStudentEntitiesByNameClass(nameClass);
+    }
+
+    @PostMapping(value = "/students")
+    public StudentEntity postClass(@RequestBody StudentCreate studentCreate) {
+        return iStudentService.createStudent(studentCreate);
+    }
+
     @PutMapping(value = "/students/{id}")
-    public Optional<StudentEntity> updateStudentsById(@PathVariable("id") int id, @RequestBody StudentEntity studentEntity) {
-        return iStudentService.updateStudentById(id, studentEntity);
+    public Optional<StudentEntity> updateStudentsById(@PathVariable("id") int id, @RequestBody StudentCreate studentCreate) {
+        return iStudentService.updateStudentById(id, studentCreate);
     }
 
     @DeleteMapping(value = "/students/{id}")
@@ -44,8 +51,4 @@ public class StudentController {
 //        return iStudentService.getStudentEntitiesByIdClass(id);
 //    }
 
-    @GetMapping(value = "classes/{name}/students")
-    public List<StudentEntity> getStudentsByNameClass(@PathVariable("name") String nameClass) {
-        return iStudentService.getStudentEntitiesByNameClass(nameClass);
-    }
 }

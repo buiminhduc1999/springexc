@@ -1,15 +1,17 @@
 package com.example.demo.services.Impl;
 
+import com.example.demo.models.entities.ClassEntity;
 import com.example.demo.models.entities.StudentEntity;
-import com.example.demo.repositories.ClassRepository;
+import com.example.demo.models.in.StudentCreate;
 import com.example.demo.repositories.StudentRepository;
 import com.example.demo.services.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository iStudentRepository;
@@ -30,17 +32,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentEntity createStudent(StudentEntity studentEntity) {
+    public StudentEntity createStudent(StudentCreate studentCreate) {
+        ModelMapper modelMapper = new ModelMapper();
+        StudentEntity studentEntity = modelMapper.map(studentCreate, StudentEntity.class);
         return iStudentRepository.save(studentEntity);
     }
 
     @Override
-    public Optional<StudentEntity> updateStudentById(int id, StudentEntity studentEntity) {
+    public Optional<StudentEntity> updateStudentById(int id, StudentCreate studentCreate) {
         Optional<StudentEntity> optionalStudentEntity = iStudentRepository.findById(id);
+        ModelMapper modelMapper = new ModelMapper();
+        StudentEntity studentEntity = modelMapper.map(studentCreate, StudentEntity.class);
         optionalStudentEntity.ifPresent(b -> b.setName(studentEntity.getName()));
         optionalStudentEntity.ifPresent(b -> b.setAddress(studentEntity.getAddress()));
         optionalStudentEntity.ifPresent(b -> b.setBirthday(studentEntity.getBirthday()));
         optionalStudentEntity.ifPresent(b -> b.setPhoneNumber(studentEntity.getPhoneNumber()));
+        optionalStudentEntity.ifPresent(b -> b.setClassEntity(studentEntity.getClassEntity()));
         optionalStudentEntity.ifPresent(iStudentRepository::save);
         return optionalStudentEntity;
     }

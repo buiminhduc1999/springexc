@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.entities.ClassEntity;
+import com.example.demo.models.in.ClassCreate;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +11,9 @@ public interface ClassService {
 
     Optional<ClassEntity> getClassById(int id);
 
-    ClassEntity createClass(ClassEntity classEntity);
+    ClassEntity createClass(ClassCreate classCreate);
 
-    Optional<ClassEntity> updateClassById(int id, ClassEntity classEntity);
+    Optional<ClassEntity> updateClassById(int id, ClassCreate classCreate);
 
     Optional<ClassEntity> deleteClassById(int id);
 }

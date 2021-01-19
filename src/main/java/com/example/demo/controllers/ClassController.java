@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 import com.example.demo.models.entities.ClassEntity;
+import com.example.demo.models.in.ClassCreate;
 import com.example.demo.services.ClassService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,8 @@ public class ClassController {
     }
 
     @PostMapping
-    public ClassEntity postClass(@RequestBody ClassEntity classEntity) {
-        return iClassService.createClass(classEntity);
+    public ClassEntity postClass(@RequestBody ClassCreate classCreate) {
+        return iClassService.createClass(classCreate);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -36,7 +37,7 @@ public class ClassController {
     }
 
     @PutMapping(value = "/{id}")
-    public Optional<ClassEntity> deleteClassById(@PathVariable("id") int id, @RequestBody ClassEntity classEntity) {
-        return iClassService.updateClassById(id, classEntity);
+    public Optional<ClassEntity> updateClassById(@PathVariable("id") int id, @RequestBody ClassCreate classCreate) {
+        return iClassService.updateClassById(id, classCreate);
     }
 }

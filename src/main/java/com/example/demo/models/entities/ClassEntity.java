@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "class")
-public class ClassEntity extends CommonEntity{
+public class ClassEntity extends CommonEntity {
     @OneToMany(mappedBy = "classEntity", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<StudentEntity> studentEntities = new ArrayList<>();
@@ -20,5 +20,4 @@ public class ClassEntity extends CommonEntity{
     public void setStudentEntities(List<StudentEntity> studentEntities) {
         this.studentEntities = studentEntities;
     }
-
 }

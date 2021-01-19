@@ -1,23 +1,15 @@
-package com.example.demo.models.entities;
+package com.example.demo.models.in;
 
-import javax.persistence.*;
+import com.example.demo.models.entities.ClassEntity;
+import com.example.demo.models.out.ClassDto;
+
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "student")
-public class StudentEntity extends CommonEntity {
-    @Column
+public class StudentCreate extends CommonCreate {
     private LocalDate birthday;
-
-    @Column
     private String address;
-
-    @Column
     private long phoneNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "class_id")
-    private ClassEntity classEntity;
+    private ClassDto classDto;
 
     public LocalDate getBirthday() {
         return birthday;
@@ -43,12 +35,11 @@ public class StudentEntity extends CommonEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public ClassEntity getClassEntity() {
-        return classEntity;
+    public ClassDto getClassEntity() {
+        return classDto;
     }
 
-    public void setClassEntity(ClassEntity classEntity) {
-        this.classEntity = classEntity;
+    public void setClassEntity(ClassDto classDto) {
+        this.classDto = classDto;
     }
-
 }
