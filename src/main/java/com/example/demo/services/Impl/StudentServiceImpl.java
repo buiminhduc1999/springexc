@@ -53,7 +53,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentEntity> getStudentEntitiesByClass(int id) {
-        return null;
+    public List<StudentEntity> getStudentEntitiesByIdClass(int id) {
+        return iStudentRepository.findAllByIdClassEntity(id);
     }
+
+    @Override
+    public List<StudentEntity> getStudentEntitiesByNameClass(String nameClass) {
+        return iStudentRepository.findAllByNameClassEntity(nameClass);
+    }
+
 }

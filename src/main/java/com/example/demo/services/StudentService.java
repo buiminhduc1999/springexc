@@ -16,5 +16,8 @@ public interface StudentService {
 
     Optional<StudentEntity> deleteStudentById(int id);
 
-    List<StudentEntity> getStudentEntitiesByClass(int id);
+    List<StudentEntity> getStudentEntitiesByIdClass(int id);
+
+    List<StudentEntity> getStudentEntitiesByNameClass(String nameClass);
+
 }

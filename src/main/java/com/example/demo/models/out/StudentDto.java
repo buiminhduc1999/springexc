@@ -39,4 +39,5 @@ public class StudentDto extends CommonDto{
     public void setClassDto(ClassDto classDto) {
         this.classDto = classDto;
     }
+
 }

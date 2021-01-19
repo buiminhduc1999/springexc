@@ -50,4 +50,5 @@ public class StudentEntity extends CommonEntity{
     public void setClassEntity(ClassEntity classEntity) {
         this.classEntity = classEntity;
     }
+
 }

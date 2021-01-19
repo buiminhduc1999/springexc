@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/students")
 public class StudentController {
     private final StudentService iStudentService;
 
@@ -15,28 +14,38 @@ public class StudentController {
         this.iStudentService = iStudentRepository;
     }
 
-    @GetMapping
+    @GetMapping(value = "/students")
     public List<StudentEntity> getStudents() {
         return iStudentService.getStudents();
     }
 
-    @PostMapping
+    @PostMapping(value = "/students")
     public StudentEntity postClass(@RequestBody StudentEntity studentEntity) {
         return iStudentService.createStudent(studentEntity);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/students/{id}")
     public Optional<StudentEntity> getStudentsById(@PathVariable("id") int id) {
         return iStudentService.getStudentsById(id);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/students/{id}")
     public Optional<StudentEntity> updateStudentsById(@PathVariable("id") int id, @RequestBody StudentEntity studentEntity) {
         return iStudentService.updateStudentById(id, studentEntity);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/students/{id}")
     public Optional<StudentEntity> deleteStudentsById(@PathVariable("id") int id) {
         return iStudentService.deleteStudentById(id);
+    }
+
+//    @GetMapping(value = "classes-id/{id}")
+//    public List<StudentEntity> getStudentsByIdClass(@PathVariable("id") int id) {
+//        return iStudentService.getStudentEntitiesByIdClass(id);
+//    }
+
+    @GetMapping(value = "classes/{name}/students")
+    public List<StudentEntity> getStudentsByNameClass(@PathVariable("name") String nameClass) {
+        return iStudentService.getStudentEntitiesByNameClass(nameClass);
     }
 }
