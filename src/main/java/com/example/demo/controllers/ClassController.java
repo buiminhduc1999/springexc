@@ -1,4 +1,6 @@
 package com.example.demo.controllers;
+
+import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.models.entities.ClassEntity;
 import com.example.demo.models.in.ClassCreate;
 import com.example.demo.services.ClassService;
@@ -23,7 +25,8 @@ public class ClassController {
 
     @GetMapping(value = "/{id}")
     public Optional<ClassEntity> getClassById(@PathVariable("id") int id) {
-        return iClassService.getClassById(id);
+        return Optional.ofNullable(iClassService.getClassById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Class not found with id :" + id)));
     }
 
     @PostMapping

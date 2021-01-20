@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.models.entities.StudentEntity;
 import com.example.demo.models.in.StudentCreate;
 import com.example.demo.services.StudentService;
@@ -23,12 +24,15 @@ public class StudentController {
 
     @GetMapping(value = "/students/{id}")
     public Optional<StudentEntity> getStudentsById(@PathVariable("id") int id) {
-        return iStudentService.getStudentsById(id);
+        return Optional.ofNullable(iStudentService.getStudentsById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
     }
 
     @GetMapping(value = "classes/{name}/students")
     public List<StudentEntity> getStudentsByNameClass(@PathVariable("name") String nameClass) {
         return iStudentService.getStudentEntitiesByNameClass(nameClass);
+//        return Optional.ofNullable(iStudentService.getStudentEntitiesByNameClass(nameClass)
+//                .orElseThrow(() -> new ResourceNotFoundException("Student not found with name :" + nameClass)));
     }
 
     @PostMapping(value = "/students")

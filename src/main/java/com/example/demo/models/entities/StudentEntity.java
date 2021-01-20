@@ -1,5 +1,8 @@
 package com.example.demo.models.entities;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -17,6 +20,7 @@ public class StudentEntity extends CommonEntity {
 
     @ManyToOne
     @JoinColumn(name = "class_id")
+    @NotFound(action = NotFoundAction.IGNORE)
     private ClassEntity classEntity;
 
     public LocalDate getBirthday() {
