@@ -1,15 +1,16 @@
 package com.example.demo.controllers;
 
-import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.models.entities.StudentEntity;
 import com.example.demo.models.in.StudentCreate;
 import com.example.demo.services.StudentService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class StudentController {
     private final StudentService iStudentService;
 
@@ -24,15 +25,12 @@ public class StudentController {
 
     @GetMapping(value = "/students/{id}")
     public Optional<StudentEntity> getStudentsById(@PathVariable("id") int id) {
-        return Optional.ofNullable(iStudentService.getStudentsById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
+        return iStudentService.getStudentsById(id);
     }
 
     @GetMapping(value = "classes/{name}/students")
     public List<StudentEntity> getStudentsByNameClass(@PathVariable("name") String nameClass) {
         return iStudentService.getStudentEntitiesByNameClass(nameClass);
-//        return Optional.ofNullable(iStudentService.getStudentEntitiesByNameClass(nameClass)
-//                .orElseThrow(() -> new ResourceNotFoundException("Student not found with name :" + nameClass)));
     }
 
     @PostMapping(value = "/students")
@@ -46,13 +44,8 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/students/{id}")
-    public Optional<StudentEntity> deleteStudentsById(@PathVariable("id") int id) {
+    public ResponseEntity<StudentEntity> deleteStudentsById(@PathVariable("id") int id) {
         return iStudentService.deleteStudentById(id);
     }
-
-//    @GetMapping(value = "classes-id/{id}")
-//    public List<StudentEntity> getStudentsByIdClass(@PathVariable("id") int id) {
-//        return iStudentService.getStudentEntitiesByIdClass(id);
-//    }
 
 }

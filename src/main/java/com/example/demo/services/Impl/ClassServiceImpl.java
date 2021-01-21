@@ -27,7 +27,8 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public Optional<ClassEntity> getClassById(int id) {
-        return iClassRepository.findById(id);
+        return Optional.ofNullable(iClassRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Class not found with id :" + id)));
     }
 
     @Override

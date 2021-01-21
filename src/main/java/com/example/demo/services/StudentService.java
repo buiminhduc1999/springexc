@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.models.entities.StudentEntity;
 import com.example.demo.models.in.StudentCreate;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +16,7 @@ public interface StudentService {
 
     Optional<StudentEntity> updateStudentById(int id, StudentCreate studentCreate);
 
-    Optional<StudentEntity> deleteStudentById(int id);
+    ResponseEntity<StudentEntity> deleteStudentById(int id);
 
     List<StudentEntity> getStudentEntitiesByIdClass(int id);
 

@@ -29,7 +29,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentEntity> getStudentsById(int id) {
-        return iStudentRepository.findById(id);
+        return Optional.ofNullable(iStudentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
     }
 
     @Override
@@ -49,11 +50,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Optional<StudentEntity> deleteStudentById(int id) {
+    public ResponseEntity<StudentEntity> deleteStudentById(int id) {
         Optional<StudentEntity> studentEntity = Optional.ofNullable(iStudentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
         studentEntity.ifPresent(iStudentRepository::delete);
-        return studentEntity;
+        return ResponseEntity.ok().build();
     }
 
     @Override
