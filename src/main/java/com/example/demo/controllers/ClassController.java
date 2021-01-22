@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/classes")
@@ -24,7 +26,6 @@ public class ClassController {
     @GetMapping
     public ResponseEntity<List<ClassDto>> getClasses() {
         return new ResponseEntity<>(iClassService.getClasses(), HttpStatus.OK);
-
     }
 
     @GetMapping(value = "/{id}")
@@ -33,9 +34,10 @@ public class ClassController {
     }
 
     @PostMapping
-    public ResponseEntity<ClassDto> postClass(@RequestBody ClassRequest classRequest) {
-        return new ResponseEntity<>(iClassService.createClass(classRequest), HttpStatus.OK);
-
+    public ResponseEntity<ClassDto> postClass(@Valid @RequestBody ClassRequest classRequest) {
+        return Optional.ofNullable(iClassService.createClass(classRequest))
+                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @DeleteMapping(value = "/{id}")
@@ -45,18 +47,18 @@ public class ClassController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<ClassDto> updateClassById(@PathVariable("id") int id, @RequestBody ClassRequest classRequest) {
-        return new ResponseEntity<>(iClassService.updateClassById(id, classRequest), HttpStatus.OK);
+        return Optional.ofNullable(iClassService.updateClassById(id, classRequest))
+                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handlerException(MethodArgumentNotValidException exception){
-
         String errorMessage = exception.getBindingResult()
                 .getFieldErrors().stream().map(
                         DefaultMessageSourceResolvable::getDefaultMessage
                 ).findFirst().orElse(exception.getMessage());
-
         return ApiResponse.builder().message(errorMessage).build();
     }
 }

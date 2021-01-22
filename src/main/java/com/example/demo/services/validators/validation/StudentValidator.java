@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
 @Component
 public class StudentValidator implements ConstraintValidator<StudentValidation, StudentRequest> {
 
@@ -40,6 +39,14 @@ public class StudentValidator implements ConstraintValidator<StudentValidation, 
                     .addPropertyNode("phone").addConstraintViolation();
             return false;
         }
+
+        if(value.getBirthday().toString().equals("null")){
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("phone is required")
+                    .addPropertyNode("phone").addConstraintViolation();
+            return false;
+        }
+
 
         return true;
     }

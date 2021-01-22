@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,7 @@ public class StudentController {
     }
 
     @PostMapping(value = "/students")
-    public ResponseEntity<StudentDto> postClass(@RequestBody StudentRequest studentRequest) {
+    public ResponseEntity<StudentDto> postClass(@Valid @RequestBody StudentRequest studentRequest) {
         return Optional.ofNullable(iStudentService.createStudent(studentRequest))
                 .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
                 .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
@@ -48,7 +49,9 @@ public class StudentController {
 
     @PutMapping(value = "/students/{id}")
     public ResponseEntity<StudentDto> updateStudentsById(@PathVariable("id") int id, @RequestBody StudentRequest studentRequest) {
-        return new ResponseEntity<>(iStudentService.updateStudentById(id, studentRequest), HttpStatus.OK);
+        return Optional.ofNullable(iStudentService.updateStudentById(id, studentRequest))
+                .map(c -> new ResponseEntity<>(c, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @DeleteMapping(value = "/students/{id}")
@@ -59,12 +62,10 @@ public class StudentController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handlerException(MethodArgumentNotValidException exception){
-
         String errorMessage = exception.getBindingResult()
                 .getFieldErrors().stream().map(
                         DefaultMessageSourceResolvable::getDefaultMessage
                 ).findFirst().orElse(exception.getMessage());
-
         return ApiResponse.builder().message(errorMessage).build();
     }
 }
