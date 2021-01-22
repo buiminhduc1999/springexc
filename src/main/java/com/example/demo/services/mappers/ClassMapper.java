@@ -4,10 +4,11 @@ import com.example.demo.models.entities.ClassEntity;
 import com.example.demo.models.in.ClassRequest;
 import com.example.demo.models.out.ClassDto;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class ClassMapper {
     public ClassEntity convertRequestToEntity(ClassRequest classRequest, int id){
         ModelMapper modelMapper = new ModelMapper();

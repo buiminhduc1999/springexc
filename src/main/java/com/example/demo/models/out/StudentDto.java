@@ -32,11 +32,11 @@ public class StudentDto extends CommonDto{
         this.phoneNumber = phoneNumber;
     }
 
-    public ClassDto getClassDto() {
+    public ClassDto getClassEntity() {
         return classDto;
     }
 
-    public void setClassDto(ClassDto classDto) {
+    public void setClassEntity(ClassDto classDto) {
         this.classDto = classDto;
     }
 

@@ -1,9 +1,10 @@
 package com.example.demo.models.in;
 
 import com.example.demo.models.out.ClassDto;
+import com.example.demo.services.validators.StudentValidation;
 
 import java.time.LocalDate;
-
+@StudentValidation
 public class StudentRequest extends CommonRequest {
     private LocalDate birthday;
     private String address;
@@ -34,11 +35,11 @@ public class StudentRequest extends CommonRequest {
         this.phoneNumber = phoneNumber;
     }
 
-    public ClassDto getClassDto() {
+    public ClassDto getClassEntity() {
         return classDto;
     }
 
-    public void setClassDto(ClassDto classDto) {
+    public void setClassEntity(ClassDto classDto) {
         this.classDto = classDto;
     }
 }

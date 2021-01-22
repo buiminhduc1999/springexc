@@ -1,8 +1,13 @@
 package com.example.demo.controllers;
 
+import com.example.demo.exceptions.ApiResponse;
 import com.example.demo.models.in.ClassRequest;
 import com.example.demo.models.out.ClassDto;
 import com.example.demo.services.ClassService;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,28 +22,41 @@ public class ClassController {
     }
 
     @GetMapping
-    public List<ClassDto> getClasses() {
-        return iClassService.getClasses();
+    public ResponseEntity<List<ClassDto>> getClasses() {
+        return new ResponseEntity<>(iClassService.getClasses(), HttpStatus.OK);
+
     }
 
     @GetMapping(value = "/{id}")
-    public ClassDto getClassById(@PathVariable("id") int id) {
-        return iClassService.getClassById(id);
+    public ResponseEntity<ClassDto> getClassById(@PathVariable("id") int id) {
+        return new ResponseEntity<>(iClassService.getClassById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ClassDto postClass(@RequestBody ClassRequest classRequest) {
-        return iClassService.createClass(classRequest);
+    public ResponseEntity<ClassDto> postClass(@RequestBody ClassRequest classRequest) {
+        return new ResponseEntity<>(iClassService.createClass(classRequest), HttpStatus.OK);
+
     }
 
     @DeleteMapping(value = "/{id}")
-    public ClassDto deleteClassById(@PathVariable(value = "id") int id) {
-        return iClassService.deleteClassById(id);
+    public ResponseEntity<ClassDto> deleteClassById(@PathVariable(value = "id") int id) {
+        return new ResponseEntity<>(iClassService.deleteClassById(id), HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
-    public ClassDto updateClassById(@PathVariable("id") int id, @RequestBody ClassRequest classRequest) {
-        return iClassService.updateClassById(id, classRequest);
+    public ResponseEntity<ClassDto> updateClassById(@PathVariable("id") int id, @RequestBody ClassRequest classRequest) {
+        return new ResponseEntity<>(iClassService.updateClassById(id, classRequest), HttpStatus.OK);
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiResponse handlerException(MethodArgumentNotValidException exception){
+
+        String errorMessage = exception.getBindingResult()
+                .getFieldErrors().stream().map(
+                        DefaultMessageSourceResolvable::getDefaultMessage
+                ).findFirst().orElse(exception.getMessage());
+
+        return ApiResponse.builder().message(errorMessage).build();
+    }
 }

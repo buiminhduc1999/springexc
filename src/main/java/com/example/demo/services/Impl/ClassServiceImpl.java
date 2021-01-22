@@ -48,7 +48,8 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public ClassDto deleteClassById(int id) {
+        ClassEntity classEntity = iClassRepository.findByIds(id);
         iClassRepository.deleteById(id);
-        return classMapper.convertEntityToDto(iClassRepository.findByIds(id));
+        return classMapper.convertEntityToDto(classEntity);
     }
 }

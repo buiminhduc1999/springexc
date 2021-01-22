@@ -45,8 +45,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto deleteStudentById(int id) {
+        StudentEntity studentEntity = iStudentRepository.findByIds(id);
         iStudentRepository.deleteById(id);
-        return studentMapper.convertEntityToDto(iStudentRepository.findByIds(id));
+        return studentMapper.convertEntityToDto(studentEntity);
     }
 
     @Override
