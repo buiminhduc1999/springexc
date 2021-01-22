@@ -1,70 +1,58 @@
 package com.example.demo.services.Impl;
 
-import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.models.entities.StudentEntity;
-import com.example.demo.models.in.StudentCreate;
+import com.example.demo.models.in.StudentRequest;
+import com.example.demo.models.out.StudentDto;
 import com.example.demo.repositories.StudentRepository;
 import com.example.demo.services.StudentService;
-import com.example.demo.utils.Converter;
-import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.services.mappers.StudentMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
+
     private final StudentRepository iStudentRepository;
-
-    public StudentServiceImpl(StudentRepository iStudentRepository) {
+    private final StudentMapper studentMapper;
+    public StudentServiceImpl(StudentRepository iStudentRepository, StudentMapper studentMapper) {
         this.iStudentRepository = iStudentRepository;
-    }
-
-
-    @Override
-    public List<StudentEntity> getStudents() {
-        return iStudentRepository.findAll();
+        this.studentMapper = studentMapper;
     }
 
     @Override
-    public Optional<StudentEntity> getStudentsById(int id) {
-        return Optional.ofNullable(iStudentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
+    public List<StudentDto> getStudents() {
+        List<StudentEntity> listStudentEntity = iStudentRepository.findAll();
+        return studentMapper.convertListEntityToDto(listStudentEntity);
     }
 
     @Override
-    public StudentEntity createStudent(StudentCreate studentCreate) {
-        ModelMapper modelMapper = new ModelMapper();
-        StudentEntity studentEntity = modelMapper.map(studentCreate, StudentEntity.class);
-        return iStudentRepository.save(studentEntity);
+    public StudentDto getStudentsById(int id) {
+        return studentMapper.convertEntityToDto(iStudentRepository.findByIds(id));
+
     }
 
     @Override
-    public Optional<StudentEntity> updateStudentById(int id, StudentCreate studentCreate) {
-        Optional<StudentEntity> optionalStudentEntity = Optional.ofNullable(iStudentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
-        Converter.convertStudentEntityToStudentCreate(optionalStudentEntity, studentCreate);
-        optionalStudentEntity.ifPresent(iStudentRepository::save);
-        return optionalStudentEntity;
+    public StudentDto createStudent(StudentRequest studentRequest) {
+        StudentEntity studentEntity =studentMapper.convertRequestToEntity(studentRequest);
+        iStudentRepository.save(studentEntity);
+        return studentMapper.convertEntityToDto(studentEntity);
     }
 
     @Override
-    public ResponseEntity<StudentEntity> deleteStudentById(int id) {
-        Optional<StudentEntity> studentEntity = Optional.ofNullable(iStudentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id :" + id)));
-        studentEntity.ifPresent(iStudentRepository::delete);
-        return ResponseEntity.ok().build();
+    public StudentDto updateStudentById(int id, StudentRequest studentRequest) {
+        return studentMapper.convertEntityToDto(iStudentRepository.save(studentMapper.convertRequestToEntity(studentRequest, id)));
     }
 
     @Override
-    public List<StudentEntity> getStudentEntitiesByIdClass(int id) {
-        return iStudentRepository.findAllByIdClassEntity(id);
+    public StudentDto deleteStudentById(int id) {
+        iStudentRepository.deleteById(id);
+        return studentMapper.convertEntityToDto(iStudentRepository.findByIds(id));
     }
 
     @Override
-    public List<StudentEntity> getStudentEntitiesByNameClass(String nameClass) {
-        return iStudentRepository.findAllByNameClassEntity(nameClass);
+    public List<StudentDto> getStudentEntitiesByIdClass(int id) {
+        List<StudentEntity> studentEntities = iStudentRepository.findAllByIdClassEntity(id);
+        return studentMapper.convertListEntityToDto(studentEntities);
     }
 
 }

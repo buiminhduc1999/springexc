@@ -1,13 +1,11 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.entities.StudentEntity;
-import com.example.demo.models.in.StudentCreate;
+import com.example.demo.models.in.StudentRequest;
+import com.example.demo.models.out.StudentDto;
 import com.example.demo.services.StudentService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -19,32 +17,32 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students")
-    public List<StudentEntity> getStudents() {
+    public List<StudentDto> getStudents() {
         return iStudentService.getStudents();
     }
 
     @GetMapping(value = "/students/{id}")
-    public Optional<StudentEntity> getStudentsById(@PathVariable("id") int id) {
+    public StudentDto getStudentsById(@PathVariable("id") int id) {
         return iStudentService.getStudentsById(id);
     }
 
-    @GetMapping(value = "classes/{name}/students")
-    public List<StudentEntity> getStudentsByNameClass(@PathVariable("name") String nameClass) {
-        return iStudentService.getStudentEntitiesByNameClass(nameClass);
+    @GetMapping(value = "classes/{id}/students")
+    public List<StudentDto> getStudentsByIdClass(@PathVariable("id") int id) {
+        return iStudentService.getStudentEntitiesByIdClass(id);
     }
 
     @PostMapping(value = "/students")
-    public StudentEntity postClass(@RequestBody StudentCreate studentCreate) {
-        return iStudentService.createStudent(studentCreate);
+    public StudentDto postClass(@RequestBody StudentRequest studentRequest) {
+        return iStudentService.createStudent(studentRequest);
     }
 
     @PutMapping(value = "/students/{id}")
-    public Optional<StudentEntity> updateStudentsById(@PathVariable("id") int id, @RequestBody StudentCreate studentCreate) {
-        return iStudentService.updateStudentById(id, studentCreate);
+    public StudentDto updateStudentsById(@PathVariable("id") int id, @RequestBody StudentRequest studentRequest) {
+        return iStudentService.updateStudentById(id, studentRequest);
     }
 
     @DeleteMapping(value = "/students/{id}")
-    public ResponseEntity<StudentEntity> deleteStudentsById(@PathVariable("id") int id) {
+    public StudentDto deleteStudentsById(@PathVariable("id") int id) {
         return iStudentService.deleteStudentById(id);
     }
 

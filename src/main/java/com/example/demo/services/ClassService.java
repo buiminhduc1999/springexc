@@ -1,19 +1,19 @@
 package com.example.demo.services;
 
 import com.example.demo.models.entities.ClassEntity;
-import com.example.demo.models.in.ClassCreate;
+import com.example.demo.models.in.ClassRequest;
+import com.example.demo.models.out.ClassDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClassService {
-    List<ClassEntity> getClasses();
+    List<ClassDto> getClasses();
 
-    Optional<ClassEntity> getClassById(int id);
+    ClassDto getClassById(int id);
 
-    ClassEntity createClass(ClassCreate classCreate);
+    ClassDto createClass(ClassRequest classRequest);
 
-    Optional<ClassEntity> updateClassById(int id, ClassCreate classCreate);
+    ClassDto updateClassById(int id, ClassRequest classRequest);
 
-    Optional<ClassEntity> deleteClassById(int id);
+    ClassDto deleteClassById(int id);
 }

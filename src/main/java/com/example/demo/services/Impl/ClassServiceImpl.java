@@ -1,57 +1,54 @@
 package com.example.demo.services.Impl;
 
-import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.models.entities.ClassEntity;
-import com.example.demo.models.in.ClassCreate;
+import com.example.demo.models.in.ClassRequest;
+import com.example.demo.models.out.ClassDto;
 import com.example.demo.repositories.ClassRepository;
 import com.example.demo.services.ClassService;
-import com.example.demo.utils.Converter;
+import com.example.demo.services.mappers.ClassMapper;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClassServiceImpl implements ClassService {
     private final ClassRepository iClassRepository;
+    private final ClassMapper classMapper;
 
-    public ClassServiceImpl(ClassRepository iClassRepository) {
+    public ClassServiceImpl(ClassRepository iClassRepository, ClassMapper classMapper) {
         this.iClassRepository = iClassRepository;
+        this.classMapper = classMapper;
     }
 
     @Override
-    public List<ClassEntity> getClasses() {
-        return iClassRepository.findAll();
+    public List<ClassDto> getClasses() {
+        List<ClassEntity> listClassEntity = iClassRepository.findAll();
+        return classMapper.convertListEntityToDto(listClassEntity);
     }
 
     @Override
-    public Optional<ClassEntity> getClassById(int id) {
-        return Optional.ofNullable(iClassRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Class not found with id :" + id)));
+    public ClassDto getClassById(int id) {
+        return classMapper.convertEntityToDto(iClassRepository.findByIds(id));
     }
 
     @Override
-    public ClassEntity createClass(ClassCreate classCreate) {
-        ClassEntity classEntity = new ClassEntity();
-        BeanUtils.copyProperties(classCreate, classEntity);
-        return iClassRepository.save(classEntity);
+    public ClassDto createClass(ClassRequest classRequest) {
+        ClassEntity classEntity =classMapper.convertRequestToEntity(classRequest);
+        return classMapper.convertEntityToDto(iClassRepository.save(classEntity));
+    }
+
+
+    @Override
+    public ClassDto updateClassById(int id, ClassRequest classRequest) {
+        return classMapper.convertEntityToDto(iClassRepository.save(classMapper.convertRequestToEntity(classRequest, id)));
     }
 
     @Override
-    public Optional<ClassEntity> updateClassById(int id, ClassCreate classCreate) {
-        Optional<ClassEntity> optionalClassEntity = Optional.ofNullable(iClassRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Class not found with id :" + id)));
-        Converter.convertClassEntityToClassCreate(optionalClassEntity, classCreate);
-        optionalClassEntity.ifPresent(iClassRepository::save);
-        return optionalClassEntity;
-    }
-
-    @Override
-    public Optional<ClassEntity> deleteClassById(int id) {
-        Optional<ClassEntity> classEntity = Optional.ofNullable(iClassRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Class not found with id :" + id)));
-        classEntity.ifPresent(iClassRepository::delete);
-        return classEntity;
+    public ClassDto deleteClassById(int id) {
+        iClassRepository.deleteById(id);
+        return classMapper.convertEntityToDto(iClassRepository.findByIds(id));
     }
 }

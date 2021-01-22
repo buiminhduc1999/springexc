@@ -1,6 +1,6 @@
 package com.example.demo.models.in;
 
-public class CommonCreate {
+public class CommonRequest {
     private String name;
 
     public String getName() {

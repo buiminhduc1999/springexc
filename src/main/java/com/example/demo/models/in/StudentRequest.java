@@ -1,11 +1,10 @@
 package com.example.demo.models.in;
 
-import com.example.demo.models.entities.ClassEntity;
 import com.example.demo.models.out.ClassDto;
 
 import java.time.LocalDate;
 
-public class StudentCreate extends CommonCreate {
+public class StudentRequest extends CommonRequest {
     private LocalDate birthday;
     private String address;
     private long phoneNumber;
@@ -35,11 +34,11 @@ public class StudentCreate extends CommonCreate {
         this.phoneNumber = phoneNumber;
     }
 
-    public ClassDto getClassEntity() {
+    public ClassDto getClassDto() {
         return classDto;
     }
 
-    public void setClassEntity(ClassDto classDto) {
+    public void setClassDto(ClassDto classDto) {
         this.classDto = classDto;
     }
 }

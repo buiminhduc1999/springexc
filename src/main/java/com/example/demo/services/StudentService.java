@@ -1,25 +1,21 @@
 package com.example.demo.services;
 
-import com.example.demo.models.entities.StudentEntity;
-import com.example.demo.models.in.StudentCreate;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.models.in.StudentRequest;
+import com.example.demo.models.out.StudentDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StudentService {
-    List<StudentEntity> getStudents();
+    List<StudentDto> getStudents();
 
-    Optional<StudentEntity> getStudentsById(int id);
+    StudentDto getStudentsById(int id);
 
-    StudentEntity createStudent(StudentCreate studentCreate);
+    StudentDto createStudent(StudentRequest studentRequest);
 
-    Optional<StudentEntity> updateStudentById(int id, StudentCreate studentCreate);
+    StudentDto updateStudentById(int id, StudentRequest studentRequest);
 
-    ResponseEntity<StudentEntity> deleteStudentById(int id);
+    StudentDto deleteStudentById(int id);
 
-    List<StudentEntity> getStudentEntitiesByIdClass(int id);
-
-    List<StudentEntity> getStudentEntitiesByNameClass(String nameClass);
+    List<StudentDto> getStudentEntitiesByIdClass(int id);
 
 }
