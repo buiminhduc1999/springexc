@@ -2005,3 +2005,127 @@ org.springframework.dao.EmptyResultDataAccessException: No class com.example.dem
 22-01-2021 15:45:31.772 INFO  [http-nio-9090-exec-1] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 22-01-2021 15:45:31.775 INFO  [http-nio-9090-exec-1] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
 22-01-2021 15:45:39.813 WARN  [http-nio-9090-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.demo.models.out.ClassDto> com.example.demo.controllers.ClassController.postClass(com.example.demo.models.in.ClassRequest): [Field error in object 'classRequest' on field 'name': rejected value [null]; codes [ClassValidation.classRequest.name,ClassValidation.name,ClassValidation.java.lang.String,ClassValidation]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [classRequest.name,name]; arguments []; default message [name],[Ljava.lang.String;@610852c2]; default message [Name is required]] ]
+22-01-2021 15:47:10.010 INFO  [restartedMain] com.example.demo.DemoApplication - Starting DemoApplication using Java 11.0.8 on DESKTOP-0GHR3KF with PID 2364 (C:\Users\ADMIN\Desktop\Spring-exercise\build\classes\java\main started by ADMIN in C:\Users\ADMIN\Desktop\Spring-exercise)
+22-01-2021 15:47:10.010 INFO  [restartedMain] com.example.demo.DemoApplication - No active profile set, falling back to default profiles: default
+22-01-2021 15:47:10.057 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+22-01-2021 15:47:10.057 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+22-01-2021 15:47:10.870 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22-01-2021 15:47:10.944 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 2 JPA repository interfaces.
+22-01-2021 15:47:11.497 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+22-01-2021 15:47:11.506 INFO  [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+22-01-2021 15:47:11.507 INFO  [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+22-01-2021 15:47:11.631 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22-01-2021 15:47:11.631 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1574 ms
+22-01-2021 15:47:11.778 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22-01-2021 15:47:11.824 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.27.Final
+22-01-2021 15:47:11.938 INFO  [restartedMain] org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+22-01-2021 15:47:12.042 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22-01-2021 15:47:12.340 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22-01-2021 15:47:12.353 INFO  [restartedMain] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+22-01-2021 15:47:13.304 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+22-01-2021 15:47:13.327 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22-01-2021 15:47:13.412 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+22-01-2021 15:47:14.350 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22-01-2021 15:47:14.475 INFO  [restartedMain] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22-01-2021 15:47:14.881 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+22-01-2021 15:47:14.912 INFO  [restartedMain] com.example.demo.DemoApplication - Started DemoApplication in 5.378 seconds (JVM running for 7.343)
+22-01-2021 15:47:14.928 INFO  [restartedMain] com.example.demo.DemoApplication - An INFO Message
+22-01-2021 15:47:14.928 WARN  [restartedMain] com.example.demo.DemoApplication - A WARN Message
+22-01-2021 15:47:14.928 ERROR [restartedMain] com.example.demo.DemoApplication - An ERROR Message
+22-01-2021 15:47:20.574 INFO  [http-nio-9090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22-01-2021 15:47:20.574 INFO  [http-nio-9090-exec-1] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22-01-2021 15:47:20.575 INFO  [http-nio-9090-exec-1] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+22-01-2021 15:47:20.736 WARN  [http-nio-9090-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [javax.validation.ConstraintDefinitionException: HV000074: com.example.demo.services.validators.ClassValidation contains Constraint annotation, but does not contain a message parameter.]
+22-01-2021 15:52:48.838 INFO  [restartedMain] com.example.demo.DemoApplication - Starting DemoApplication using Java 11.0.8 on DESKTOP-0GHR3KF with PID 13580 (C:\Users\ADMIN\Desktop\Spring-exercise\build\classes\java\main started by ADMIN in C:\Users\ADMIN\Desktop\Spring-exercise)
+22-01-2021 15:52:48.846 INFO  [restartedMain] com.example.demo.DemoApplication - No active profile set, falling back to default profiles: default
+22-01-2021 15:52:48.990 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+22-01-2021 15:52:48.991 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+22-01-2021 15:52:50.647 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22-01-2021 15:52:50.797 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 136 ms. Found 2 JPA repository interfaces.
+22-01-2021 15:52:51.838 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+22-01-2021 15:52:51.855 INFO  [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+22-01-2021 15:52:51.856 INFO  [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+22-01-2021 15:52:51.992 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22-01-2021 15:52:51.993 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3000 ms
+22-01-2021 15:52:52.326 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22-01-2021 15:52:52.470 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.27.Final
+22-01-2021 15:52:52.784 INFO  [restartedMain] org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+22-01-2021 15:52:53.759 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22-01-2021 15:52:54.575 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22-01-2021 15:52:54.598 INFO  [restartedMain] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+22-01-2021 15:52:56.509 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+22-01-2021 15:52:56.522 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22-01-2021 15:52:56.564 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+22-01-2021 15:52:57.488 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22-01-2021 15:52:57.614 INFO  [restartedMain] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22-01-2021 15:52:57.907 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+22-01-2021 15:52:57.926 INFO  [restartedMain] com.example.demo.DemoApplication - Started DemoApplication in 9.869 seconds (JVM running for 14.047)
+22-01-2021 15:52:57.932 INFO  [restartedMain] com.example.demo.DemoApplication - An INFO Message
+22-01-2021 15:52:57.932 WARN  [restartedMain] com.example.demo.DemoApplication - A WARN Message
+22-01-2021 15:52:57.933 ERROR [restartedMain] com.example.demo.DemoApplication - An ERROR Message
+22-01-2021 15:53:00.331 INFO  [http-nio-9090-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22-01-2021 15:53:00.332 INFO  [http-nio-9090-exec-2] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22-01-2021 15:53:00.334 INFO  [http-nio-9090-exec-2] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+22-01-2021 15:55:30.962 WARN  [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m58s782ms34µs200ns).
+22-01-2021 16:30:13.926 INFO  [restartedMain] com.example.demo.DemoApplication - Starting DemoApplication using Java 11.0.8 on DESKTOP-0GHR3KF with PID 5076 (C:\Users\ADMIN\Desktop\Spring-exercise\build\classes\java\main started by ADMIN in C:\Users\ADMIN\Desktop\Spring-exercise)
+22-01-2021 16:30:13.931 INFO  [restartedMain] com.example.demo.DemoApplication - No active profile set, falling back to default profiles: default
+22-01-2021 16:30:14.004 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+22-01-2021 16:30:14.004 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+22-01-2021 16:30:15.391 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22-01-2021 16:30:15.484 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 92 ms. Found 2 JPA repository interfaces.
+22-01-2021 16:30:16.528 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+22-01-2021 16:30:16.543 INFO  [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+22-01-2021 16:30:16.543 INFO  [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+22-01-2021 16:30:16.691 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22-01-2021 16:30:16.692 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2688 ms
+22-01-2021 16:30:16.952 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22-01-2021 16:30:17.046 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.27.Final
+22-01-2021 16:30:17.301 INFO  [restartedMain] org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+22-01-2021 16:30:17.472 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22-01-2021 16:30:18.053 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22-01-2021 16:30:18.084 INFO  [restartedMain] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+22-01-2021 16:30:21.004 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+22-01-2021 16:30:21.025 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22-01-2021 16:30:21.130 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+22-01-2021 16:30:22.669 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22-01-2021 16:30:22.810 INFO  [restartedMain] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22-01-2021 16:30:23.138 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+22-01-2021 16:30:23.154 INFO  [restartedMain] com.example.demo.DemoApplication - Started DemoApplication in 10.158 seconds (JVM running for 12.402)
+22-01-2021 16:30:23.169 INFO  [restartedMain] com.example.demo.DemoApplication - An INFO Message
+22-01-2021 16:30:23.169 WARN  [restartedMain] com.example.demo.DemoApplication - A WARN Message
+22-01-2021 16:30:23.169 ERROR [restartedMain] com.example.demo.DemoApplication - An ERROR Message
+22-01-2021 16:30:28.597 INFO  [http-nio-9090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22-01-2021 16:30:28.605 INFO  [http-nio-9090-exec-1] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22-01-2021 16:30:28.607 INFO  [http-nio-9090-exec-1] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+22-01-2021 16:31:02.242 WARN  [http-nio-9090-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.demo.models.out.ClassDto> com.example.demo.controllers.ClassController.postClass(com.example.demo.models.in.ClassRequest): [Field error in object 'classRequest' on field 'name': rejected value [null]; codes [ClassValidation.classRequest.name,ClassValidation.name,ClassValidation.java.lang.String,ClassValidation]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [classRequest.name,name]; arguments []; default message [name],[Ljava.lang.String;@6575df53]; default message [Name is required]] ]
+22-01-2021 16:33:33.785 WARN  [http-nio-9090-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.example.demo.models.out.StudentDto> com.example.demo.controllers.StudentController.postClass(com.example.demo.models.in.StudentRequest): [Field error in object 'studentRequest' on field 'name': rejected value [null]; codes [StudentValidation.studentRequest.name,StudentValidation.name,StudentValidation.java.lang.String,StudentValidation]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [studentRequest.name,name]; arguments []; default message [name],[Ljava.lang.String;@61bb659e]; default message [name is required]] ]
+22-01-2021 09:47:51.792 INFO  [restartedMain] com.example.demo.DemoApplication - Starting DemoApplication using Java 11.0.8 on DESKTOP-0GHR3KF with PID 6668 (C:\Users\ADMIN\Desktop\Spring-exercise\build\classes\java\main started by ADMIN in C:\Users\ADMIN\Desktop\Spring-exercise)
+22-01-2021 09:47:51.792 INFO  [restartedMain] com.example.demo.DemoApplication - No active profile set, falling back to default profiles: default
+22-01-2021 09:47:51.901 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+22-01-2021 09:47:51.901 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+22-01-2021 09:47:52.885 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22-01-2021 09:47:52.964 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 65 ms. Found 2 JPA repository interfaces.
+22-01-2021 09:47:53.542 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+22-01-2021 09:47:53.557 INFO  [restartedMain] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+22-01-2021 09:47:53.557 INFO  [restartedMain] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+22-01-2021 09:47:53.651 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22-01-2021 09:47:53.667 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1766 ms
+22-01-2021 09:47:53.885 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22-01-2021 09:47:53.964 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.27.Final
+22-01-2021 09:47:54.167 INFO  [restartedMain] org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+22-01-2021 09:47:54.292 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22-01-2021 09:47:54.776 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22-01-2021 09:47:54.792 INFO  [restartedMain] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+22-01-2021 09:47:56.026 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+22-01-2021 09:47:56.042 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22-01-2021 09:47:56.089 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+22-01-2021 09:47:56.698 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22-01-2021 09:47:56.839 INFO  [restartedMain] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22-01-2021 09:47:57.073 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+22-01-2021 09:47:57.073 INFO  [restartedMain] com.example.demo.DemoApplication - Started DemoApplication in 6.039 seconds (JVM running for 7.903)
+22-01-2021 09:47:57.089 INFO  [restartedMain] com.example.demo.DemoApplication - An INFO Message
+22-01-2021 09:47:57.089 WARN  [restartedMain] com.example.demo.DemoApplication - A WARN Message
+22-01-2021 09:47:57.089 ERROR [restartedMain] com.example.demo.DemoApplication - An ERROR Message
+22-01-2021 09:48:25.542 INFO  [http-nio-9090-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22-01-2021 09:48:25.542 INFO  [http-nio-9090-exec-2] org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22-01-2021 09:48:25.545 INFO  [http-nio-9090-exec-2] org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms

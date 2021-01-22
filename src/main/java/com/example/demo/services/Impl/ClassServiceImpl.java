@@ -25,8 +25,7 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public List<ClassDto> getClasses() {
-        List<ClassEntity> listClassEntity = iClassRepository.findAll();
-        return classMapper.convertListEntityToDto(listClassEntity);
+        return classMapper.convertListEntityToDto(iClassRepository.findAll());
     }
 
     @Override
@@ -36,8 +35,7 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public ClassDto createClass(ClassRequest classRequest) {
-        ClassEntity classEntity =classMapper.convertRequestToEntity(classRequest);
-        return classMapper.convertEntityToDto(iClassRepository.save(classEntity));
+        return classMapper.convertEntityToDto(iClassRepository.save(classMapper.convertRequestToEntity(classRequest)));
     }
 
 

@@ -27,6 +27,6 @@ public class ClassMapper {
     }
 
     public List<ClassDto> convertListEntityToDto(List<ClassEntity> classEntities){
-        return classEntities.stream().map(classEntity -> convertEntityToDto(classEntity)).collect(Collectors.toList());
+        return classEntities.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 }

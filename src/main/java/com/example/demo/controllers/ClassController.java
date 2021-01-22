@@ -56,9 +56,9 @@ public class ClassController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handlerException(MethodArgumentNotValidException exception){
         String errorMessage = exception.getBindingResult()
-                .getFieldErrors().stream().map(
-                        DefaultMessageSourceResolvable::getDefaultMessage
-                ).findFirst().orElse(exception.getMessage());
+                .getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .findFirst().orElse(exception.getMessage());
         return ApiResponse.builder().message(errorMessage).build();
     }
 }

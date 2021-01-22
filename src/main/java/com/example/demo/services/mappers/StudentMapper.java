@@ -27,7 +27,7 @@ public class StudentMapper {
     }
 
     public List<StudentDto> convertListEntityToDto(List<StudentEntity> studentEntities){
-        return  studentEntities.stream().map(studentEntity -> convertEntityToDto(studentEntity)).collect(Collectors.toList());
+        return  studentEntities.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 
 }

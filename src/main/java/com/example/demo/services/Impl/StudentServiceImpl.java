@@ -14,6 +14,7 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository iStudentRepository;
     private final StudentMapper studentMapper;
+
     public StudentServiceImpl(StudentRepository iStudentRepository, StudentMapper studentMapper) {
         this.iStudentRepository = iStudentRepository;
         this.studentMapper = studentMapper;
@@ -34,8 +35,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto createStudent(StudentRequest studentRequest) {
         StudentEntity studentEntity =studentMapper.convertRequestToEntity(studentRequest);
-        iStudentRepository.save(studentEntity);
-        return studentMapper.convertEntityToDto(studentEntity);
+        return studentMapper.convertEntityToDto(iStudentRepository.save(studentEntity));
     }
 
     @Override

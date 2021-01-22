@@ -8,9 +8,7 @@ import java.lang.annotation.*;
 
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.FIELD})
 @Documented
-@Constraint(validatedBy = {
-        ClassValidator.class
-})
+@Constraint(validatedBy = {ClassValidator.class})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ClassValidation {
 
