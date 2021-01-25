@@ -1,4 +1,4 @@
-package com.example.demo.services.validators.validation;
+package com.example.demo.services.validators.validations;
 
 import com.example.demo.models.in.ClassRequest;
 import com.example.demo.services.validators.ClassValidation;

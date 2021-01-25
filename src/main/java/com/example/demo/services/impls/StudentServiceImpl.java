@@ -1,4 +1,4 @@
-package com.example.demo.services.Impl;
+package com.example.demo.services.impls;
 
 import com.example.demo.models.entities.StudentEntity;
 import com.example.demo.models.in.StudentRequest;
@@ -6,8 +6,12 @@ import com.example.demo.models.out.StudentDto;
 import com.example.demo.repositories.StudentRepository;
 import com.example.demo.services.StudentService;
 import com.example.demo.services.mappers.StudentMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -33,20 +37,29 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDto createStudent(StudentRequest studentRequest) {
-        StudentEntity studentEntity =studentMapper.convertRequestToEntity(studentRequest);
-        return studentMapper.convertEntityToDto(iStudentRepository.save(studentEntity));
+    public ResponseEntity<StudentDto> createStudent(StudentRequest studentRequest) {
+        StudentEntity studentEntity = studentMapper.convertRequestToEntity(studentRequest);
+        studentEntity = iStudentRepository.save(studentEntity);
+        StudentDto studentDto = studentMapper.convertEntityToDto(studentEntity);
+        return Optional.ofNullable(studentDto)
+                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
-    public StudentDto updateStudentById(int id, StudentRequest studentRequest) {
-        return studentMapper.convertEntityToDto(iStudentRepository.save(studentMapper.convertRequestToEntity(studentRequest, id)));
+    public ResponseEntity<StudentDto> updateStudentById(int id, StudentRequest studentRequest) {
+        StudentEntity studentEntity = studentMapper.convertRequestToEntity(studentRequest, id);
+        studentEntity = iStudentRepository.save(studentEntity);
+        StudentDto studentDto = studentMapper.convertEntityToDto(studentEntity);
+        return Optional.ofNullable(studentDto)
+                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
     public StudentDto deleteStudentById(int id) {
         StudentEntity studentEntity = iStudentRepository.findByIds(id);
-        iStudentRepository.deleteById(id);
+        iStudentRepository.deleteById(id); //dung cau query binh thuong
         return studentMapper.convertEntityToDto(studentEntity);
     }
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/classes")
@@ -35,9 +34,7 @@ public class ClassController {
 
     @PostMapping
     public ResponseEntity<ClassDto> postClass(@Valid @RequestBody ClassRequest classRequest) {
-        return Optional.ofNullable(iClassService.createClass(classRequest))
-                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
-                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+        return iClassService.createClass(classRequest);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -47,9 +44,7 @@ public class ClassController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<ClassDto> updateClassById(@PathVariable("id") int id, @RequestBody ClassRequest classRequest) {
-        return Optional.ofNullable(iClassService.updateClassById(id, classRequest))
-                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
-                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+        return iClassService.updateClassById(id, classRequest);
     }
 
     @ExceptionHandler

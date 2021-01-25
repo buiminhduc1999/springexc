@@ -3,6 +3,8 @@ package com.example.demo.models.in;
 import com.example.demo.models.out.ClassDto;
 import com.example.demo.services.validators.StudentValidation;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 @StudentValidation
 public class StudentRequest extends CommonRequest {

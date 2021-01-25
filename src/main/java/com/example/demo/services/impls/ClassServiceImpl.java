@@ -1,4 +1,4 @@
-package com.example.demo.services.Impl;
+package com.example.demo.services.impls;
 
 import com.example.demo.models.entities.ClassEntity;
 import com.example.demo.models.in.ClassRequest;
@@ -6,12 +6,12 @@ import com.example.demo.models.out.ClassDto;
 import com.example.demo.repositories.ClassRepository;
 import com.example.demo.services.ClassService;
 import com.example.demo.services.mappers.ClassMapper;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClassServiceImpl implements ClassService {
@@ -34,14 +34,24 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public ClassDto createClass(ClassRequest classRequest) {
-        return classMapper.convertEntityToDto(iClassRepository.save(classMapper.convertRequestToEntity(classRequest)));
+    public ResponseEntity<ClassDto> createClass(ClassRequest classRequest) {
+        ClassEntity classEntity = classMapper.convertRequestToEntity(classRequest);
+        classEntity = iClassRepository.save(classEntity);
+        ClassDto classDto = classMapper.convertEntityToDto(classEntity);
+        return Optional.ofNullable(classDto)
+                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
 
     @Override
-    public ClassDto updateClassById(int id, ClassRequest classRequest) {
-        return classMapper.convertEntityToDto(iClassRepository.save(classMapper.convertRequestToEntity(classRequest, id)));
+    public ResponseEntity<ClassDto> updateClassById(int id, ClassRequest classRequest) {
+        ClassEntity classEntity = classMapper.convertRequestToEntity(classRequest, id);
+        classEntity = iClassRepository.save(classEntity);
+        ClassDto classDto = classMapper.convertEntityToDto(classEntity);
+        return Optional.ofNullable(classDto)
+                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override

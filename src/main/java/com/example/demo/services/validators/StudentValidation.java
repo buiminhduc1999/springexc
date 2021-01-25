@@ -1,6 +1,6 @@
 package com.example.demo.services.validators;
 
-import com.example.demo.services.validators.validation.StudentValidator;
+import com.example.demo.services.validators.validations.StudentValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

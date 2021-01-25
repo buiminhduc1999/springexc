@@ -42,16 +42,12 @@ public class StudentController {
 
     @PostMapping(value = "/students")
     public ResponseEntity<StudentDto> postClass(@Valid @RequestBody StudentRequest studentRequest) {
-        return Optional.ofNullable(iStudentService.createStudent(studentRequest))
-                .map(c -> new ResponseEntity<>(c, HttpStatus.CREATED))
-                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+        return iStudentService.createStudent(studentRequest);
     }
 
     @PutMapping(value = "/students/{id}")
     public ResponseEntity<StudentDto> updateStudentsById(@PathVariable("id") int id, @RequestBody StudentRequest studentRequest) {
-        return Optional.ofNullable(iStudentService.updateStudentById(id, studentRequest))
-                .map(c -> new ResponseEntity<>(c, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+        return iStudentService.updateStudentById(id, studentRequest);
     }
 
     @DeleteMapping(value = "/students/{id}")

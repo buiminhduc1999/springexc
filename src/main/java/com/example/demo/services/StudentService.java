@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.models.in.StudentRequest;
 import com.example.demo.models.out.StudentDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ public interface StudentService {
 
     StudentDto getStudentsById(int id);
 
-    StudentDto createStudent(StudentRequest studentRequest);
+    ResponseEntity<StudentDto> createStudent(StudentRequest studentRequest);
 
-    StudentDto updateStudentById(int id, StudentRequest studentRequest);
+    ResponseEntity<StudentDto> updateStudentById(int id, StudentRequest studentRequest);
 
     StudentDto deleteStudentById(int id);
 

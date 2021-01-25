@@ -1,8 +1,8 @@
 package com.example.demo.services;
 
-import com.example.demo.models.entities.ClassEntity;
 import com.example.demo.models.in.ClassRequest;
 import com.example.demo.models.out.ClassDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ public interface ClassService {
 
     ClassDto getClassById(int id);
 
-    ClassDto createClass(ClassRequest classRequest);
+    ResponseEntity<ClassDto> createClass(ClassRequest classRequest);
 
-    ClassDto updateClassById(int id, ClassRequest classRequest);
+    ResponseEntity<ClassDto> updateClassById(int id, ClassRequest classRequest);
 
     ClassDto deleteClassById(int id);
 }
